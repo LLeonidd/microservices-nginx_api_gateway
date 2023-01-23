@@ -1,0 +1,22 @@
+image: docker:latest
+
+stages:
+  - build
+
+variables:
+  CONTAINER_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_NAME
+
+.before_script_build: &script_build
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+build:
+  stage: build
+  <<: *script_build
+  services:
+    - docker:dind
+  only:
+    - tags
+  script:
+    - docker build --pull -t $CONTAINER_IMAGE . --build-arg WWWGROUP=1000
+    - docker push $CONTAINER_IMAGE

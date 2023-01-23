@@ -1,0 +1,6 @@
+{
+    "id" : 7,
+    "name" : "Базы данных.",
+    "description" : "Обзор, основные запросы в MySQL.\nПодключение MySQL в PHP и выполнение запросов. ORM.",
+    "video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+}
